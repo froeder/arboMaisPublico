@@ -27,6 +27,7 @@ export default {
     onDecode (decodedString) {
       console.log(decodedString)
       this.id_arvore = decodedString
+      this.$router.push({ name: 'arvore', params: { id: this.id_arvore } })
     }
   }
 }

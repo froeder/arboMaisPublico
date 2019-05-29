@@ -6,6 +6,13 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Index.vue') }
     ]
+  },
+  {
+    path: '/arvore',
+    component: () => import('layouts/ArvoreLayout.vue'),
+    children: [
+      { name: 'arvore', path: 'arvore/:id', component: () => import('pages/Arvore.vue') }
+    ]
   }
 ]
 
