@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueQrcodeReader from 'vue-qrcode-reader'
+
+Vue.use(VueQrcodeReader)
 
 // import example from './module-example'
 

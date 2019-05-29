@@ -1,6 +1,14 @@
 <template>
-  <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+  <q-page padding>
+    <span class="text-weight-thin">Bem vindo</span>
+    <q-card>
+      <q-card-section>
+        <qrcode-stream @decode="onDecode"></qrcode-stream>
+      </q-card-section>
+      <q-card-section>
+        <span>{{id_arvore || 'Aguardando'}}</span>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
@@ -9,6 +17,17 @@
 
 <script>
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  data () {
+    return {
+      id_arvore: ''
+    }
+  },
+  methods: {
+    onDecode (decodedString) {
+      console.log(decodedString)
+      this.id_arvore = decodedString
+    }
+  }
 }
 </script>
