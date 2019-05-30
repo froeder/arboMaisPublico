@@ -23,32 +23,37 @@
         </q-carousel>
         <q-card style="margin-top:1em">
           <q-card-section>
-            <q-btn @click="server()">Server</q-btn>
+            <q-btn @click="server()">baixar</q-btn>
           </q-card-section>
         </q-card>
     </q-page>
 </template>
 
 <script>
-import axios from 'axios'
+import Firebase from 'firebase'
 
 export default {
   data () {
     return {
-      id: this.$route.params,
+      id: this.$route.params.id,
       slide: 1,
       fullscreen: false
     }
   },
   methods: {
-    server () {
-      axios.get('http://localhost:3000')
-        .then(function (response) {
-          console.log(response)
-        })
+    server (id) {
+      console.log(id)
+      Firebase.firestore().collection('arvores').where('id', '==', id).get().then(
+        query => {
+          query.forEach(doc => {
+            console.log(doc.data())
+          })
+        }
+      )
     }
   },
   mounted () {
+    this.server(this.id)
   }
 }
 </script>
