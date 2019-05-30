@@ -10,7 +10,12 @@
           infinite
           style="box-shadow: 0px 0px 8px grey"
         >
-          <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
+          <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg">
+            <div>
+              <div class="text-h2">{{arvore[0].nome_popular}}</div>
+              <div class="text-subtitle1">{{arvore[0].nome_cientifico}}</div>
+            </div>
+          </q-carousel-slide>
           <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
           <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
           <template v-slot:control>
@@ -21,9 +26,9 @@
             </q-carousel-control>
           </template>
         </q-carousel>
-        <q-card style="margin-top:1em">
+        <q-card v-for="arvore in arvore" v-bind:key="arvore.id" style="margin-top:1em">
           <q-card-section>
-            <q-btn @click="server()">baixar</q-btn>
+            {{arvore.nome_popular}}
           </q-card-section>
         </q-card>
     </q-page>
@@ -37,7 +42,7 @@ export default {
     return {
       id: this.$route.params.id,
       slide: 1,
-      fullscreen: false
+      arvore: []
     }
   },
   methods: {
@@ -46,7 +51,7 @@ export default {
       Firebase.firestore().collection('arvores').where('id', '==', id).get().then(
         query => {
           query.forEach(doc => {
-            console.log(doc.data())
+            this.arvore.push(doc.data())
           })
         }
       )
@@ -54,6 +59,7 @@ export default {
   },
   mounted () {
     this.server(this.id)
+    console.log(this.arvore)
   }
 }
 </script>
