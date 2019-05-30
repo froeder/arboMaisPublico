@@ -11,9 +11,9 @@
           style="box-shadow: 0px 0px 8px grey"
         >
           <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg">
-            <div>
-              <div class="text-h2">{{arvore[0].nome_popular}}</div>
-              <div class="text-subtitle1">{{arvore[0].nome_cientifico}}</div>
+            <div style="color:white">
+              <div class="text-h6">{{arvore[0].nome_popular}}</div>
+              <small>{{arvore[0].nome_cientifico}}</small>
             </div>
           </q-carousel-slide>
           <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
@@ -23,12 +23,22 @@
               position="bottom-right"
               :offset="[18, 18]"
             >
+              <q-btn
+                round dense text-color="yellow"
+                icon="star"
+                @click="favoritar()"
+              />
             </q-carousel-control>
           </template>
         </q-carousel>
         <q-card v-for="arvore in arvore" v-bind:key="arvore.id" style="margin-top:1em">
           <q-card-section>
-            {{arvore.nome_popular}}
+            <div>
+              <strong>Nome Popular: </strong> <span class="text-weight-light">{{arvore.nome_popular}} </span>
+            </div>
+            <div>
+              <strong>Nome científico: </strong><span class="text-weight-light"><i>{{arvore.nome_cientifico}}</i></span>
+            </div>
           </q-card-section>
         </q-card>
     </q-page>
@@ -55,7 +65,8 @@ export default {
           })
         }
       )
-    }
+    },
+    favoritar () {}
   },
   mounted () {
     this.server(this.id)
