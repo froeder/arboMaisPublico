@@ -12,8 +12,8 @@
         >
           <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg">
             <div style="color:white">
-              <div class="text-h6">{{arvore[0].nome_popular}}</div>
-              <small>{{arvore[0].nome_cientifico}}</small>
+              <div class="text-h6">{{arvore.nome_popular}}</div>
+              <small>{{arvore.nome_cientifico}}</small>
             </div>
           </q-carousel-slide>
           <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
@@ -31,7 +31,7 @@
             </q-carousel-control>
           </template>
         </q-carousel>
-        <q-card v-for="arvore in arvore" v-bind:key="arvore.id" style="margin-top:1em">
+        <q-card style="margin-top:1em">
           <q-card-section>
             <div>
               <strong>Nome Popular: </strong> <span class="text-weight-light">{{arvore.nome_popular}} </span>
@@ -52,7 +52,7 @@ export default {
     return {
       id: this.$route.params.id,
       slide: 1,
-      arvore: []
+      arvore: {}
     }
   },
   methods: {
@@ -61,16 +61,22 @@ export default {
       Firebase.firestore().collection('arvores').where('id', '==', id).get().then(
         query => {
           query.forEach(doc => {
-            this.arvore.push(doc.data())
+            this.arvore = {
+              nome_popular: doc.data().nome_popular,
+              nome_cientifico: doc.data().nome_cientifico
+            }
           })
         }
       )
     },
-    favoritar () {}
+    favoritar () {},
+    baixarFotos () {
+      console.log(this.arvore)
+    }
   },
   mounted () {
     this.server(this.id)
-    console.log(this.arvore)
+    this.baixarFotos()
   }
 }
 </script>
