@@ -23,7 +23,7 @@
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+        <q-item clickable to="/">
           <q-item-section avatar>
             <q-icon name="home" />
           </q-item-section>
@@ -31,7 +31,7 @@
             <q-item-label>Página Inicial</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a">
+        <q-item clickable to="/favorito">
           <q-item-section avatar>
             <q-icon name="star" />
           </q-item-section>
@@ -39,7 +39,7 @@
             <q-item-label>Favoritos</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a">
+        <q-item clickable to="/sobre">
           <q-item-section avatar>
             <q-icon name="info" />
           </q-item-section>
@@ -49,9 +49,15 @@
         </q-item>
       </q-list>
     </q-drawer>
-
     <q-page-container style="background-color:#d8d3be">
-      <router-view />
+      <transition
+        name="transitions"
+        enter-active-class="animated zoomIn"
+        leave-active-class="animated zoomOut"
+        mode="out-in"
+      >
+        <router-view />
+      </transition>
     </q-page-container>
     <q-footer class="fundo" elevated>
         Desenvolvido por Jhonatan Froeder
@@ -78,6 +84,6 @@ export default {
 
 <style>
   .fundo{
-     background-image: linear-gradient(to right, #C0CA33, #9ea71d);
+     background-image: linear-gradient(to right, #C0CA33, #757c13);
   }
 </style>

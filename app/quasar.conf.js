@@ -20,7 +20,7 @@ module.exports = function (ctx) {
       // 'fontawesome-v5',
       // 'eva-icons'
     ],
-
+    animations: 'all',
     framework: {
       // all: true, // --- includes everything; for dev only!
 
@@ -41,7 +41,11 @@ module.exports = function (ctx) {
         'QCard',
         'QCardSection',
         'QCardActions',
-        'QFooter'
+        'QFooter',
+        'QCarousel',
+        'QCarouselControl',
+        'QCarouselSlide',
+        'QSlideTransition'
       ],
 
       directives: [
