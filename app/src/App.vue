@@ -10,5 +10,8 @@ export default {
 }
 </script>
 
-<style>
+<style scopped>
+  .pt1{
+    padding-top:1em
+  }
 </style>

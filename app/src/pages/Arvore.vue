@@ -25,20 +25,29 @@
               :offset="[18, 18]"
             >
               <q-btn
-                push round dense color="white" text-color="primary"
-                :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
-                @click="fullscreen = !fullscreen"
+                flat :text-color="cor"
+                :icon="'star'"
+                @click="console.log('add favorito')"
               />
             </q-carousel-control>
           </template>
         </q-carousel>
-        <q-card style="margin-top:1em">
-          <q-card-section>
-            <div>
-              <strong>Nome Popular: </strong> <span class="text-weight-light">{{arvore.nome_popular}} </span>
-            </div>
-            <div>
-              <strong>Nome científico: </strong><span class="text-weight-light"><i>{{arvore.nome_cientifico}}</i></span>
+        <div class="pt1 text-center">Etimologia</div>
+        <q-card>
+          <q-card-section class="q-pa-md">
+            <div class="column">
+              <div>
+                <strong>Nome Popular: </strong> <span class="text-weight-light">{{arvore.nome_popular}} </span>
+              </div>
+              <div>
+                <strong>Nome científico: </strong><span class="text-weight-light"><i>{{arvore.nome_cientifico}}</i></span>
+              </div>
+              <div class="col-xs-6">
+                <strong>Espécie: <span class="text-weight-light">{{arvore.especie}}</span></strong>
+              </div>
+              <div>
+                <strong class="col-xs-6">Familia: <span class="text-weight-light">{{arvore.familia}}</span></strong>
+              </div>
             </div>
           </q-card-section>
         </q-card>
@@ -54,6 +63,7 @@ export default {
       id: this.$route.params.id,
       slide: 1,
       fullscreen: false,
+      cor: 'white',
       arvore: {},
       url1: '',
       url2: '',
